@@ -1,5 +1,10 @@
 const msgElement = document.querySelector('#msg');
 
+// рандом число от 1 до 100, машина запомнила но никому не сказала
+function getRandomNum() {
+  return Math.floor(Math.random() * 100) + 1;
+}
+
 const randomNum = getRandomNum();
 
 /* console.log(randomNum); */
@@ -7,25 +12,17 @@ const randomNum = getRandomNum();
 window.RaspoznavanieGolosa =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 
-let raspoznaty = new window.RaspoznavanieGolosa();
+const raspoznaty = new window.RaspoznavanieGolosa();
 
 // запись пошла, играем
 raspoznaty.start();
 
-// Идёт запись ..
-function onSpeak(event) {
-  const msg = event.results[0][0].transcript;
-
-  writeMessage(msg);
-  chechNumber(msg);
-}
-
 // вывод записи на экран
 function writeMessage(message) {
   msgElement.innerHTML = `
-<div>Вы сказали:</div>
-<span class="box">${message}</span>
-`;
+  <div>Вы сказали:</div>
+  <span class="box">${message}</span>
+  `;
 }
 
 // Проверка записи, является ли оно числом
@@ -35,14 +32,14 @@ function chechNumber(lalala) {
   // проверка lalala
   if (Number.isNaN(num)) {
     msgElement.innerHTML += `
-    <div>Это не число 😞</div>
+    <div>Это не число</div>
     `;
     return;
   }
   // проверка диапазона >100 && <0
   if (num > 100 || num < 0) {
     msgElement.innerHTML += `
-    <div>Число должно быть от 1 до 100 😞</div>
+    <div>Число должно быть от 1 до 100</div>
     `;
     return;
   }
@@ -56,18 +53,21 @@ function chechNumber(lalala) {
     `;
   } else if (num > randomNum) {
     msgElement.innerHTML += `
-    <div>МЕНЬШЕ 🥱</div>
+    <div>МЕНЬШЕ</div>
     `;
   } else {
     msgElement.innerHTML += `
-    <div>БОЛЬШЕ 🥱</div>
+    <div>БОЛЬШЕ</div>
     `;
   }
 }
 
-//рандом число от 1 до 100, машина запомнила но никому не сказала
-function getRandomNum() {
-  return Math.floor(Math.random() * 100) + 1;
+// Идёт запись ..
+function onSpeak(event) {
+  const msg = event.results[0][0].transcript;
+
+  writeMessage(msg);
+  chechNumber(msg);
 }
 
 // результат записи
