@@ -2,7 +2,7 @@
 # For cooperation, please contact abay.reushenov@gmail.com
 1. Алгоритм Гаусса вычисления даты Пасхи
 deploy: https://aba4you.herokuapp.com/easter/ 
-JavaScript: -> ./public/easter
+code: /public/easter
 2.  Угадай число. "Mental test"
 deploy: https://aba4you.herokuapp.com/ugaday/ 
-JavaScript: -> ./public/ugaday
+code: /public/ugaday
