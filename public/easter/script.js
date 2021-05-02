@@ -64,8 +64,10 @@ const easter_date = new Date(easter());
 const dayEvent = easter_date.getDate();
 const yearEvent = easter_date.getFullYear();
 const dayEaster = document.querySelector('#event_day');
-dayEaster.innerHTML = `${dayEvent} ${easter_date.toLocaleString('default', {
-  month: 'short',
-})}  ${yearEvent} года`;
+dayEaster.innerHTML = `${dayEvent} ${String(
+  easter_date.toLocaleString('default', {
+    month: 'long',
+  }),
+).replace(/.$/, 'я')}  ${yearEvent} года`;
 
 initTimer();
