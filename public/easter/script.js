@@ -1,10 +1,36 @@
+function easter(x = 0) {
+  const date = new Date();
+  const years = date.getFullYear() + x;
+  let month;
+  let day;
+  const a = years % 19;
+  const b = years % 4;
+  const c = years % 7;
+  const d = (19 * a + 15) % 30;
+  const e = (2 * b + 4 * c + 6 * d + 6) % 7;
+  const f = d + e;
+  if (f <= 26) {
+    month = 3;
+    day = f + 4;
+  } else {
+    month = 4;
+    day = f - 26;
+  }
+  const easterDate = new Date(years, month, day);
+  if (easterDate.getTime() < date.getTime()) {
+    return easter(1);
+  }
+  return easterDate;
+}
 /* eslint-disable radix */
 /* eslint-disable camelcase */
 function initTimer() {
   const target_date = new Date(easter()).getTime();
 
-  let days; let hours; let minutes; let
-    seconds;
+  let days;
+  let hours;
+  let minutes;
+  let seconds;
 
   const d = document.querySelector('#day');
   const m = document.querySelector('#min');
@@ -34,34 +60,12 @@ function initTimer() {
   }, 1000);
 }
 
-function easter(x = 0) {
-  const date = new Date();
-  const years = date.getFullYear() + x;
-  let month; let
-    day;
-  const a = years % 19;
-  const b = years % 4;
-  const c = years % 7;
-  const d = (19 * a + 15) % 30;
-  const e = (2 * b + 4 * c + 6 * d + 6) % 7;
-  const f = d + e;
-  if (f <= 26) {
-    month = 3;
-    day = f + 4;
-  } else {
-    month = 4;
-    day = f - 26;
-  }
-  const easterDate = new Date(years, month, day);
-  if (easterDate.getTime() < date.getTime()) {
-    return easter(1);
-  }
-  return easterDate;
-}
-initTimer();
 const easter_date = new Date(easter());
 const dayEvent = easter_date.getDate();
 const yearEvent = easter_date.getFullYear();
-const monthEvent = easter_date.getMonth().toLocaleString('ru-RU');
 const dayEaster = document.querySelector('#event_day');
-dayEaster.innerHTML = `${dayEvent} ${monthEvent !== 4 ? 'мая' : 'апреля'} ${yearEvent} года`;
+dayEaster.innerHTML = `${dayEvent} ${easter_date.toLocaleString('default', {
+  month: 'short',
+})}  ${yearEvent} года`;
+
+initTimer();
