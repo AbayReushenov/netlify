@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/761d58c498.js" crossorigin="anonymous"></script>
+  <title>Souvenez-vous de ça</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <button id="clear" class="clear btn">
+    <i class="fas fa-trash"></i> Supprimer la base de données
+  </button>
+
+  <h1 class="shadow">
+    Comment ce sera en français?
+    <button id="show" class="btn btn-small">
+      <i class="fas fa-plus"></i> Un nouveau mot?
+    </button>
+  </h1>
+
+  <div id="cards-container" class="cards">
+  </div>
+
+  <div class="navigation">
+    <button id="prev" class="nav-button shadow">
+    <span class="shadow"><i class="fas fa-arrow-left"></i> dernier</span>
+    </button>
+
+    <p id="current"></p>
+
+    <button id="next" class="nav-button">
+      <span class="shadow"> prochain <i class="fas fa-arrow-right"></i></span>
+    </button>
+  </div>
+
+  <div id="add-container" class="add-container">
+    <h1>
+      Ajouter une nouvelle phrase
+      <button id="hide" class="btn btn-small btn-ghost">
+        <span class="shadow"> <i class="fas fa-times"></i> refus </span>
+      </button>
+    </h1>
+
+    <div class="form-group">
+      <label for="question">En russe</label>
+      <textarea id="question"
+        placeholder="Напишите что-нибудь...Те слова, что помогут надеяться, верить и ждать..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="answer">En français</label>
+      <textarea id="answer"
+        placeholder="Écrivez quelque chose... des mots pour aider à espérer, à croire et à attendre..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="picter">Photographie</label>
+      <input id="picter" size="60" 
+        placeholder="Référence à la photo"></input>
+    </div>
+
+    <button id="add-card" class="btn">
+      <i class="fas fa-plus"></i> Ajouter une carte
+    </button>
+  </div>
+
+
+</body>
+
+</html>
